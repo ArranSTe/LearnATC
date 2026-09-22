@@ -1,0 +1,1 @@
+try{const flight=JSON.parse(sessionStorage.getItem('vatsim-companion-flight-v1'));if(flight?.airline&&flight?.departure&&flight?.arrival){const link=document.getElementById('start-link');link.href='radio.html';link.textContent='Open your radio script →';}}catch{}

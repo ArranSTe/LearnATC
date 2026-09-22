@@ -1,0 +1,6 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {atisReady,fieldError,phraseParts,steps,flightKey} from '../dist/radio-model.js';
+test('ATIS requires an information letter and valid hPa QNH',()=>{assert.equal(atisReady({}),false);assert.equal(atisReady({info:'Alpha',qnh:'1023'}),true);assert.equal(atisReady({info:'Alpha',qnh:'2992'}),false);assert(fieldError('squawk','8888'));assert.equal(fieldError('squawk','0421'),'');assert(fieldError('arrivalRunway','99'));});
+test('personal details replace placeholders without inventing ATC assignments',()=>{const parts=phraseParts(steps[1].cards[0].text,{callsign:'BAW249',stand:'A12',aircraft:'Boeing 777',destination:'Heathrow',info:'Alpha',qnh:'1023'});assert(parts.every(p=>!p.missing));assert(!parts.map(p=>p.text).join('').includes('{{'));assert(phraseParts('{{departureRunway}}',{})[0].missing);});
+test('departure and arrival runways remain separate and a changed flight has different state identity',()=>{assert(steps.find(s=>s.id==='tower-out').cards.some(c=>c.text.includes('{{departureRunway}}')));assert(steps.find(s=>s.id==='tower-in').cards.some(c=>c.text.includes('{{arrivalRunway}}')));assert.notEqual(flightKey({gate:'1'}),flightKey({gate:'2'}));assert.equal(steps.length,9);});

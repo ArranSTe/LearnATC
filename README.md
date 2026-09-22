@@ -29,4 +29,3 @@ With the server running, run `node --test --test-isolation=none test/*.test.mjs`
 
 The input page now needs a Node.js server. The old `.openai/hosting.json` identifies the previously registered, unpublished static Site and is retained as historical identity only; it is not a working deployment configuration for this API. Do not deploy only `dist/` without adding the API to the chosen host.
 
-
