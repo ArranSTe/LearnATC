@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LearnATC</title>
+  <link rel="stylesheet" href="start-vatsim.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="index.html">✈ LearnATC</a>
+      <a href="getting-started.html">Getting started →</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p class="eyebrow">BEFORE YOUR FIRST FLIGHT</p>
+      <h1>How to join <span>VATSIM.</span></h1>
+
+      <!-- WRITE YOUR INTRODUCTION HERE -->
+      <p class="intro-description">
+This will show you how to go from logging in to connecting to your first flight.
+      </p>
+    </div>
+
+    <aside class="preparation">
+      <h2>Before you start</h2>
+
+      <!-- EDIT THIS LIST -->
+      <ul>
+        <li>You will need airport charts (eg. ChartFox).</li>
+        <li>A Vatsim account with all tests passed.</li>
+        <li>A notepad.</li>
+      </ul>
+    </aside>
+
+    <nav class="contents" aria-label="Guide contents">
+      <span>IN THIS GUIDE</span>
+      <a href="#step-1">01 · Create A Flight Plan</a>
+      <a href="#step-2">02 · Connect To VATSIM</a>
+      <a href="#step-3">03 · Ready To Go?</a>
+    </nav>
+
+    <!-- STEP ONE -->
+    <section class="step" id="step-1" aria-labelledby="step-1-title">
+      <div class="step-heading">
+        <span class="step-number" aria-hidden="true">01</span>
+        <div>
+          <p class="eyebrow">LET’S BEGIN</p>
+          <h2 id="step-1-title">Create A Flight Plan</h2>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <!-- WRITE YOUR INSTRUCTIONS HERE -->
+        <p>
+          Once you have made a VATSIM account (<a href="https://my.vatsim.net/register">Join</a>) and passed the test, you can now do your first flight. Before going into the simulator we need to create a flight plan. We recommend making flight plans on <a href="https://www.simbrief.com/home/">SimBrief</a>. it's free to use and easy to make flight plans.
+        </p>
+
+        <p>
+          To create a flight plan go to (<a href="https://www.simbrief.com/home/">SimBrief</a>). Once you have made an account go to <b>DISPATCH > DISPATCH SYSTEM > NEW FLIGHT</b> then start by entering you airline ICAO code (eg. EZY for Easyjet) you can find this by searching your airline and then followed by ICAO. Once you've entered your airline ICAO we can now move on onto your flight number you can put whatever you want (eg. 741T). Now that you have entered your flight number you can now enter your departure and arrival enter their ICAO codes for each. Now, aircraft type which is located under "Aircraft Info" (eg. im flying the Airbus A320 so i will select "A320"). Now click generate in the top left. You've now made your flight plan! We now just need to file the flight plan to Vatsim. To do this click "Prefile on a Network" in the top bar and then choose Vatsim this should take you to the Vatsim flight plan page. Scroll down and click file flight plan. WELL DONE!
+        </p>
+      </div>
+
+      <figure><img src="simbreif.png" alt="SimBrief flight planning screen" class="screenshot" loading="lazy"><figcaption>Preparing your flight plan in SimBrief.</figcaption></figure>
+
+    </section>
+
+    <!-- STEP TWO -->
+    <section class="step" id="step-2" aria-labelledby="step-2-title">
+      <div class="step-heading">
+        <span class="step-number" aria-hidden="true">02</span>
+        <div>
+          <p class="eyebrow">NEXT UP</p>
+          <h2 id="step-2-title">Connect To VATSIM</h2>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <!-- WRITE YOUR INSTRUCTIONS HERE -->
+        <p>Prepare your pilot client with the same callsign and aircraft type as your flight plan.</p>
+
+        <!-- OPTIONAL NUMBERED INSTRUCTIONS -->
+        <ol>
+          <li>Open <b>vPilot</b>. (<a href="https://vpilot.rosscarlson.dev/Download">Download</a>)</li>
+          <li>Setup Your Audio And Push To Talk In <b>Settings</b></li>
+          <li>Click Connect</li>
+          <li>Add Your Callsign. (eg. EZY731X)</li>
+          <li>Add your aircraft type (e.g. A320 for the Airbus A320).</li>
+        </ol>
+      </div>
+
+      <figure><img src="Screenshot%202026-09-23%20211011.png" alt="vPilot connection window" class="screenshot" loading="lazy"><figcaption>Entering your connection details in vPilot.</figcaption></figure>
+    </section>
+
+    <!-- STEP THREE -->
+    <section class="step" id="step-3" aria-labelledby="step-3-title">
+      <div class="step-heading">
+        <span class="step-number" aria-hidden="true">03</span>
+        <div>
+          <p class="eyebrow">GETTING READY</p>
+          <h2 id="step-3-title">Ready To Go?</h2>
+        </div>
+      </div>
+
+      <div class="instructions">
+        <!-- WRITE YOUR INSTRUCTIONS HERE -->
+<ol>
+
+<li>Launch MSFS</li>
+<li>Load Into The Correct Plane And Stand</li>
+<li>Click Connect On vPilot</li>
+<li>Enter Your Details Into The Input Page</li>
+<li>Start Flying :)</li>
+</ol>
+      </div>
+
+</section>
+
+    <!--
+      NEED MORE STEPS?
+      Copy a complete section above.
+      Give it a unique id and heading id, update its number,
+      and add a matching link to the contents navigation.
+    -->
+
+    <section class="next-step" aria-labelledby="next-title">
+      <p style="margin-top: 30px;"  class="eyebrow">WHAT’S NEXT?</p>
+      <h2 id="next-title">Ready to practise your radio calls?</h2>
+      <p>Set up your flight and follow your personalised LearnATC script.</p>
+      <a class="button" href="input.html">Set up a flight →</a>
+    </section>
+
+    <footer>
+      <span>LearnATC · Made for virtual pilots.</span>
+      <span>Independent of VATSIM.</span>
+    </footer>
+  </main>
+
+  <a
+    class="settings-button"
+    href="settings.html"
+    aria-label="Open settings"
+    title="Settings"
+  >
+    <span aria-hidden="true">⚙</span>
+  </a>
+</body>
+</html>
