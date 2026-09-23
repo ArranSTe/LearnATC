@@ -1,6 +1,6 @@
-# VATSIM Companion
+# LearnATC
 
-Four separate pages: homepage, flight input, radio script, and getting started, with a worldwide airport lookup API.
+Five pages: homepage, flight input, radio script, getting started, and settings, with a worldwide airport lookup API.
 
 ## Run
 
@@ -29,3 +29,11 @@ With the server running, run `node --test --test-isolation=none test/*.test.mjs`
 
 The input page now needs a Node.js server. The old `.openai/hosting.json` identifies the previously registered, unpublished static Site and is retained as historical identity only; it is not a working deployment configuration for this API. Do not deploy only `dist/` without adding the API to the chosen host.
 
+
+## Script preferences and departures
+
+Flight numbers accept 1–4 letters or digits (for example BAW24AB). Runway dropdowns use the selected departure and arrival airports. Completed script values are plain text; each pilot call has a saved checkbox. Changing a value clears checkmarks for affected calls.
+
+`GET /api/departures?airport=EGLL&runway=27R` retrieves runway-filtered SIDs from the public [AIRAC API](https://airac.net/). The server follows pagination, removes duplicates, applies a 10-second total timeout and caches successful results for 15 minutes. No API key is required. Coverage and availability depend on that external provider. The page displays the reported cycle and provides retry/manual entry when lookup fails or a departure is unlisted. Changing the departure runway clears the selected SID. These are reference procedures, not assigned clearances.
+
+Settings (larger script text, ATC examples, and celebration animations) persist in local storage. ATC examples are hidden by default to simplify the script. Flight completion shows a “Well done!” dialog and returns home after 3.5 seconds; confetti respects reduced-motion preferences.

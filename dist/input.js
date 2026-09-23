@@ -15,7 +15,7 @@ function updateSummary() {
   $('summary-callsign').textContent=airline+flight || '—';
   for(const kind of ['departure','arrival']) { $('summary-'+kind).textContent=selected[kind]?.icao || '····';$('summary-'+kind+'-city').textContent=selected[kind]?.city || (selected[kind]?.name ?? 'Not selected'); }
   $('summary-aircraft').textContent=aircraftCode() || 'Not selected';$('summary-gate').textContent=$('gate').value.trim() || '—';
-  const count=[/^[A-Z]{3}$/.test(airline),/^[0-9]{1,4}$/.test(flight),!!selected.departure,!!selected.arrival,isAircraftValid(),!!$('gate').value.trim()].filter(Boolean).length;
+  const count=[/^[A-Z]{3}$/.test(airline),/^[A-Z0-9]{1,4}$/.test(flight),!!selected.departure,!!selected.arrival,isAircraftValid(),!!$('gate').value.trim()].filter(Boolean).length;
   $('completion-count').textContent=`${count} / 6`;$('completion').value=count;
   if(!restoring){$('flight-badge').textContent='DRAFT';$('flight-badge').classList.remove('saved');$('save-status').textContent=count===6?'All details entered. Save your flight setup when ready.':'Complete your flight details to save your setup.';}
 }
@@ -75,7 +75,7 @@ function airportSearch(kind) {
 controllers.departure=airportSearch('departure');controllers.arrival=airportSearch('arrival');
 for(const id of [...fields,'custom-aircraft']){
   $(id).addEventListener('input',()=>{
-    if(['airline','custom-aircraft'].includes(id))$(id).value=$(id).value.toUpperCase().replace(id==='airline'?/[^A-Z]/g:/[^A-Z0-9]/g,'');
+    if(['airline','custom-aircraft','flight-number'].includes(id))$(id).value=$(id).value.toUpperCase().replace(id==='airline'?/[^A-Z]/g:/[^A-Z0-9]/g,'');
     if(id==='gate')$(id).value=$(id).value.toUpperCase();
     if(id==='aircraft'){$('custom-aircraft-field').hidden=$('aircraft').value!=='OTHER';error('custom-aircraft');}
     error(id);updateSummary();
@@ -85,7 +85,7 @@ form.addEventListener('submit',event=>{
   event.preventDefault();let first;
   function check(id,valid,message){error(id,valid?'':message);if(!valid&&!first)first=$(id);}
   check('airline',/^[A-Z]{3}$/.test($('airline').value),'Enter a three-letter airline ICAO code, such as BAW.');
-  check('flight-number',/^[0-9]{1,4}$/.test($('flight-number').value),'Enter a flight number containing 1–4 digits.');
+  check('flight-number',/^[A-Z0-9]{1,4}$/.test($('flight-number').value),'Enter a flight number containing 1–4 letters or digits.');
   for(const kind of ['departure','arrival'])check(kind,selected[kind]?.icao===$(kind).value&&!!selected[kind],'Select an airport from the matching results.');
   check('aircraft',!!$('aircraft').value,'Select your aircraft.');
   if($('aircraft').value==='OTHER')check('custom-aircraft',isAircraftValid(),'Enter an aircraft ICAO type containing 2–4 letters or digits.');
