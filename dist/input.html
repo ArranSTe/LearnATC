@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flight setup — VATSIM Companion</title>
+<title>LearnATC</title>
 <meta name="description" content="Prepare your VATSIM flight with worldwide ICAO airport search and runway details.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1726'/%3E%3Cpath d='M16 5L19 14L27 20V23L18 20V26L21 28H11L14 26V20L5 23V20L13 14Z' fill='%2353a8ff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="input.css"><script src="input.js" defer></script>
-</head><body>
+<link rel="stylesheet" href="settings.css"><script src="settings.js" defer></script></head><body>
 <header class="topbar"><div class="nav-inner">
-<a class="brand" href="./" aria-label="VATSIM Companion home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l3 11 10 7v3l-11-4v7l4 3H10l4-3v-7L3 24v-3l10-7z"/></svg><span>VATSIM<small>COMPANION</small></span></a>
+<a class="brand" href="./" aria-label="LearnATC home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l3 11 10 7v3l-11-4v7l4 3H10l4-3v-7L3 24v-3l10-7z"/></svg><span>LearnATC</span></a>
 <nav aria-label="Main navigation"><a href="./">Home</a><a href="input.html" aria-current="page">Input page</a><button type="button" id="guide">Getting started ↗</button></nav>
 </div></header>
 <main class="workspace">
@@ -17,7 +17,7 @@
 <section class="panel" aria-labelledby="flight-title"><div class="panel-heading"><span class="section-icon" aria-hidden="true">01</span><h2 id="flight-title">Flight identification</h2><span class="required-note">All fields required</span></div>
 <div class="panel-body two-columns">
 <div class="field"><label for="airline">Airline ICAO</label><input id="airline" name="airline" placeholder="e.g. BAW" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false" required pattern="[A-Z]{3}" aria-describedby="airline-help airline-error"><p class="hint" id="airline-help">Three-letter airline code</p><p class="error" id="airline-error"></p></div>
-<div class="field"><label for="flight-number">Flight number</label><input id="flight-number" name="flightNumber" placeholder="e.g. 249" maxlength="4" inputmode="numeric" autocomplete="off" required pattern="[0-9]{1,4}" aria-describedby="number-help flight-number-error"><p class="hint" id="number-help">Numbers only, up to four digits</p><p class="error" id="flight-number-error"></p></div>
+<div class="field"><label for="flight-number">Flight number</label><input id="flight-number" name="flightNumber" placeholder="e.g. 249" maxlength="4" inputmode="text" autocomplete="off" required pattern="[A-Za-z0-9]{1,4}" aria-describedby="number-help flight-number-error"><p class="hint" id="number-help">Up to four letters or digits, e.g. 24AB</p><p class="error" id="flight-number-error"></p></div>
 </div></section>
 <section class="panel route-panel" aria-labelledby="route-title"><div class="panel-heading"><span class="section-icon" aria-hidden="true">02</span><h2 id="route-title">Route & airports</h2><span class="panel-caption">ICAO lookup</span></div>
 <div class="panel-body two-columns airport-fields">

@@ -1,1 +1,1 @@
-{"name":"vatsim-companion","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test --test-isolation=none test/*.test.mjs"},"engines":{"node":">=22"}}
+{"name":"learnatc","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test --test-isolation=none test/*.test.mjs"},"engines":{"node":">=22"}}

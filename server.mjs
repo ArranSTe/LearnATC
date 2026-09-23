@@ -3,6 +3,7 @@ import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { getDatabase, searchAirports } from './airport-data.mjs';
+import { getDepartures } from './departure-data.mjs';
 const root = fileURLToPath(new URL('./dist/',import.meta.url));
 const port = Number(process.env.PORT || 4317);
 const mime = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.jpg':'image/jpeg','.svg':'image/svg+xml','.png':'image/png'};
@@ -12,6 +13,13 @@ const server=http.createServer(async (req,res)=>{
   try {
     if (!['GET','HEAD'].includes(req.method)) {res.setHeader('Allow','GET, HEAD');return json(res,405,{error:'Method not allowed.'});}
     const url = new URL(req.url,'http://localhost');
+    if (url.pathname === '/api/departures') {
+      const airport=(url.searchParams.get('airport') || '').toUpperCase();
+      const runway=(url.searchParams.get('runway') || '').toUpperCase();
+      if (!/^[A-Z]{4}$/.test(airport) || !/^(0[1-9]|[12]\d|3[0-6])[LRC]?$/.test(runway)) return json(res,400,{error:'Choose an airport and runway.'});
+      try {return json(res,200,await getDepartures(airport,runway));}
+      catch {return json(res,503,{error:'Departure lookup unavailable. Retry or enter the departure assigned by ATC.'});}
+    }
     if (url.pathname === '/api/airports' || url.pathname.startsWith('/api/airports/')) {
       const isSearch=url.pathname === '/api/airports';
       const query=(isSearch ? url.searchParams.get('q') || '' : decodeURIComponent(url.pathname.slice('/api/airports/'.length))).trim().toUpperCase();
@@ -30,5 +38,5 @@ const server=http.createServer(async (req,res)=>{
     catch {json(res,404,{error:'Page not found.'});}
   } catch {json(res,400,{error:'Invalid request.'});}
 });
-server.listen(port,'127.0.0.1',()=>console.log(`VATSIM Companion: http://127.0.0.1:${port}`));
+server.listen(port,'127.0.0.1',()=>console.log(`LearnATC: http://127.0.0.1:${port}`));
 getDatabase().catch(error=>console.warn('Airport lookup will retry when requested:',error.message));
